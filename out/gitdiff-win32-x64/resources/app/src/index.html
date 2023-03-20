@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>git diff</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="stylesheet" href="./diff2html.min.css">
+  <link rel="stylesheet" href="./element-ui.css">
+  <script src="./axios.js"></script>
+  <script src="./diff.js"></script>
+  <script src="./diff2html.js"></script>
+  <script src="./vue.js"></script>
+  <script src="./element-ui.js"></script>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <el-input v-model="gitDir" placeholder="请输入git项目文件夹地址，例如：D:/workspace/cep"></el-input>
+      <el-button @click="getBranch" :loading="branchLoading">获取分支</el-button>
+
+      <el-select v-model="leftBranch" placeholder="请选择基准分支或提交记录" style="margin-left: 100px" clearable>
+        <el-option v-for="(item, i) in branchList" :key="item.b+i" :value="item.b" :label="item.b+item.msg"></el-option>
+      </el-select>
+      <el-select v-model="rightBranch" placeholder="请选择对比分支或提交记录" clearable>
+        <el-option v-for="(item, i) in branchList" :key="item.b+i" :value="item.b" :label="item.b+item.msg"></el-option>
+      </el-select>
+      <el-button @click="comparison" :loading="comparisonLoading">开始比对</el-button>
+    </header>
+    <main>
+      <aside>
+        <ul class="el-scrollbar__view el-select-dropdown__list">
+          <li class="el-select-dropdown__item" :class="{hover: item===activeItem}" :title="item" v-for="item in fileList" @click="getFileContent(item)">
+            <span>{{item}}</span>
+          </li>
+        </ul>
+      </aside>
+      <div class="main-content" v-loading="contentLoading">
+        <div v-html="diffHtml"></div>
+      </div>
+    </main>
+  </div>
+  <script src="./index.js"></script>
+</body>
+</html>

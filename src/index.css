@@ -1,0 +1,55 @@
+*{
+  padding: 0;
+  margin: 0;
+}
+li{
+  list-style: none;
+}
+
+html,body,#app{
+  height: 100%;
+  overflow: hidden;
+}
+#app{
+  display: flex;
+  flex-direction: column;
+}
+header{
+  display: flex;
+  flex-shrink: 0;
+  height: 50px;
+  background-color: #fff;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 8px;
+  align-items: center;
+}
+header .el-input{
+  width: 350px;
+}
+main{
+  flex: 1 auto;
+  display: flex;
+  overflow: hidden;
+}
+aside{
+  width: 300px;
+  flex-shrink: 0;
+  border-right: 1px solid #ccc;
+  padding: 8px;
+  overflow: auto;
+}
+.el-select-dropdown__item:hover{
+  background-color: #F5F7FA;
+}
+.el-select-dropdown__item.hover{
+  color: #409eff;
+  font-weight: 700;
+}
+.main-content{
+  flex: 1 auto;
+  overflow: auto;
+}
+td.d2h-code-side-linenumber{
+  position: unset;
+  display: block;
+}
